@@ -17,6 +17,9 @@
   ...
   0123 fox's voice.mp3
 
+  I recommend that you use methods playFileNumber or playFileName because method playTrackNumber
+  works depending on the order in which the files were copied to the flash drive.
+
   Hardware Connections:
   WT2003M02 V3.0 -> Arduino Pin
   -------------------------------------
@@ -74,7 +77,6 @@ void setup() {
 
 void loop() {
     srRead();
-
     if (cmd[0] == 'p') {
         MP3.pause();
     } else if (cmd[0] == 's') {
@@ -96,7 +98,7 @@ void loop() {
         Serial.print("PlayStatus: ");
         if (playStatus == MP3_STATUS_PLAY) {
             Serial.println("Play");
-            uint8_t* songName = MP3.getSongName();
+            uint8_t *songName = MP3.getSongName();
             Serial.print("SongName: ");
             Serial.write(songName, 8);
             Serial.println();
@@ -118,9 +120,25 @@ void loop() {
             MP3.setPlaymodeRandom();
         }
     } else if (cmd[0] == '@') {
-        MP3.playTrackNumber(cmd[1] - '0');
+        static uint16_t n0 = 0;
+        for (int i = 1; i < 5; i++) {
+            for (int i = 1; i < 5; i++) {
+                if (cmd[i] < '0' || cmd[i] > '9') {
+                    break;
+                }
+                n0 = n0 * 10 + (cmd[i] - '0');
+            }
+        }
+        MP3.playTrackNumber(n0);
     } else if (cmd[0] == '#') {
-        MP3.playFileNumber(cmd[1] - '0');
+        static uint16_t n1 = 0;
+        for (int i = 1; i < 5; i++) {
+            if (cmd[i] < '0' || cmd[i] > '9') {
+                break;
+            }
+            n1 = n1 * 10 + (cmd[i] - '0');
+        }
+        MP3.playFileNumber(n1);
     } else if (cmd[0] == '*') {
         static uint8_t fileName[4];
         fileName[0] = cmd[1];
@@ -130,11 +148,11 @@ void loop() {
         MP3.playFileName(fileName);
     } else if (cmd[0] == 'v') {
         uint8_t volume = 0;
-        if (cmd[1] >= '0' && cmd[1] <= '9') {
-            volume = cmd[1] - '0';
-        }
-        if (cmd[2] >= '0' && cmd[2] <= '9') {
-            volume = volume * 10 + (cmd[2] - '0');
+        for (int i = 1; i < 3; i++) {
+            if (cmd[i] < '0' || cmd[i] > '9') {
+                break;
+            }
+            volume = volume * 10 + (cmd[i] - '0');
         }
         MP3.setVolume(volume);
     } else if (cmd[0] == 'e') {
