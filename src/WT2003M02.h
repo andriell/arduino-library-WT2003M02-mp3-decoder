@@ -74,6 +74,8 @@ public:
 
     uint8_t *getSongName(void);
 
+    uint16_t getFileNumber(void);
+
     uint8_t playTrackNumber(uint8_t trackNumber);
 
     uint8_t playFileName(uint8_t *fileName);

@@ -94,6 +94,18 @@ uint8_t *WT2003M02::getSongName() {
 
 }
 
+uint16_t WT2003M02::getFileNumber() {
+    getSongName();
+    uint16_t r = 0;
+    for (uint8_t i = 0; i < 4; i++) {
+        if (songName[i] < '0' || songName[i] > '9') {
+            break;
+        }
+        r = r * 10 + (songName[i] - '0');
+    }
+    return r;
+}
+
 uint8_t WT2003M02::playTrackNumber(uint8_t trackNumber) {
     commandBytes[0] = MP3_COMMAND_PLAY_INDEX_IN_ROOT;
     commandBytes[1] = trackNumber >> 8;   //MSB

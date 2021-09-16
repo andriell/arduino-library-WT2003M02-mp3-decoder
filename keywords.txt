@@ -17,6 +17,7 @@ setPlaymodeAllLoop	KEYWORD2
 setPlaymodeRandom	KEYWORD2
 getSongCount	KEYWORD2
 getSongName	KEYWORD2
+getFileNumber KEYWORD2
 playTrackNumber	KEYWORD2
 playFileName	KEYWORD2
 playFileNumber	KEYWORD2

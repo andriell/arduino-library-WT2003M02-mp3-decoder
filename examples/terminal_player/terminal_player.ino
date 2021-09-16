@@ -9,7 +9,7 @@
   Don't forget to load some MP3s and plug it in too!
 
   Name all files with a numeric prefix (4 characters with leading zeros),
-  otherwise the playFileNumber function will not work correctly. Examples of filenames:
+  otherwise the playFileNumber and getFileNumber function will not work correctly. Examples of filenames:
 
   0001 Best song.mp3
   0002 my song.mp3
