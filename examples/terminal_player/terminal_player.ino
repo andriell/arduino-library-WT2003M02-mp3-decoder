@@ -120,7 +120,7 @@ void loop() {
             MP3.setPlaymodeRandom();
         }
     } else if (cmd[0] == '@') {
-        static uint16_t n0 = 0;
+        uint16_t n0 = 0;
         for (int i = 1; i < 5; i++) {
             for (int i = 1; i < 5; i++) {
                 if (cmd[i] < '0' || cmd[i] > '9') {
@@ -131,7 +131,7 @@ void loop() {
         }
         MP3.playTrackNumber(n0);
     } else if (cmd[0] == '#') {
-        static uint16_t n1 = 0;
+        uint16_t n1 = 0;
         for (int i = 1; i < 5; i++) {
             if (cmd[i] < '0' || cmd[i] > '9') {
                 break;
