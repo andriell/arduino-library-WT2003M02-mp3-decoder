@@ -2,7 +2,11 @@
 
 Library for the WT2003M02 MP3 decoder board v3.0. This library is designed to control the WT2003M02 board via UART.
 
+[![Watch the video](extras/video.png)](https://youtu.be/nKyf272RXu4)
+
 ## WT2003M02 v3.0
+
+The module can be bought here: https://www.2ram.ru/l/57
 
 This board looks like this:
 ![Connection 2](extras/img2.jpg)
